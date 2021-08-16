@@ -60,7 +60,7 @@ function replaceWords(text, triggers) {
   //can create bigger array of smaller text
   let words = Object.keys(triggers)
   for (let i = 0; i < words.length; i++) {
-    text = text.replace(/${words[i]}/g, `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
+    text = text.replaceAll(words[i], `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
   }
   return text
 }
