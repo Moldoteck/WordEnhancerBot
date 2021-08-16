@@ -17,9 +17,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       //todo: add support for multiple links in one message when one smaller
 
       let txt_to_replace = orig_msg.substring(last_ind, start)
-      txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
-      txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
-      txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
+      txt_to_replace = txt_to_replace.replace(/&/g, '&amp;')
+      txt_to_replace = txt_to_replace.replace(/</g, '&lt;')
+      txt_to_replace = txt_to_replace.replace(/>/g, '&gt;')
 
       let triggers = ctx.dbchannel.triggers
 
@@ -34,9 +34,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       last_ind = start + offset
     }
     let txt_to_replace = orig_msg.substring(last_ind)
-    txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
-    txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
-    txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
+    txt_to_replace = txt_to_replace.replace(/&/g, '&amp;')
+    txt_to_replace = txt_to_replace.replace(/</g, '&lt;')
+    txt_to_replace = txt_to_replace.replace(/>/g, '&gt;')
 
     let triggers = ctx.dbchannel.triggers
 
@@ -60,7 +60,7 @@ function replaceWords(text, triggers) {
   //can create bigger array of smaller text
   let words = Object.keys(triggers)
   for (let i = 0; i < words.length; i++) {
-    text = text.replaceAll(words[i], `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
+    text = text.replace(/${words[i]}/g, `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
   }
   return text
 }
