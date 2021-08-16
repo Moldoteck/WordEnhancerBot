@@ -17,9 +17,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       //todo: add support for multiple links in one message when one smaller
 
       let txt_to_replace = orig_msg.substring(last_ind, start)
-      txt_to_replace = txt_to_replace.replace(/&/g, '&amp;')
-      txt_to_replace = txt_to_replace.replace(/</g, '&lt;')
-      txt_to_replace = txt_to_replace.replace(/>/g, '&gt;')
+      txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
+      txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
+      txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
 
       let triggers = ctx.dbchannel.triggers
 
@@ -34,9 +34,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       last_ind = start + offset
     }
     let txt_to_replace = orig_msg.substring(last_ind)
-    txt_to_replace = txt_to_replace.replace(/&/g, '&amp;')
-    txt_to_replace = txt_to_replace.replace(/</g, '&lt;')
-    txt_to_replace = txt_to_replace.replace(/>/g, '&gt;')
+    txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
+    txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
+    txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
 
     let triggers = ctx.dbchannel.triggers
 
