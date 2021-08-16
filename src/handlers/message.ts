@@ -1,6 +1,14 @@
 import { detectURL } from '@/helpers/url'
 import { Context } from 'telegraf'
 
+//Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+function replaceAll(str, match, replacement) {
+  return str.replace(new RegExp(escapeRegExp(match), 'g'), () => replacement);
+}
+
 export async function enhanceChannelMessage(ctx: Context) {
   if ('channel_post' in ctx.update) {
     let [final_urls, url_place, url_type] = detectURL(ctx.update.channel_post)
@@ -17,9 +25,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       //todo: add support for multiple links in one message when one smaller
 
       let txt_to_replace = orig_msg.substring(last_ind, start)
-      txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
-      txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
-      txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
+      txt_to_replace = replaceAll(txt_to_replace, '&', '&amp;')
+      txt_to_replace = replaceAll(txt_to_replace, '<', '&lt;')
+      txt_to_replace = replaceAll(txt_to_replace, '>', '&gt;')
 
       let triggers = ctx.dbchannel.triggers
 
@@ -34,9 +42,9 @@ export async function enhanceChannelMessage(ctx: Context) {
       last_ind = start + offset
     }
     let txt_to_replace = orig_msg.substring(last_ind)
-    txt_to_replace = txt_to_replace.replaceAll('&', '&amp;')
-    txt_to_replace = txt_to_replace.replaceAll('<', '&lt;')
-    txt_to_replace = txt_to_replace.replaceAll('>', '&gt;')
+    txt_to_replace = replaceAll(txt_to_replace, '&', '&amp;')
+    txt_to_replace = replaceAll(txt_to_replace, '<', '&lt;')
+    txt_to_replace = replaceAll(txt_to_replace, '>', '&gt;')
 
     let triggers = ctx.dbchannel.triggers
 
@@ -60,7 +68,8 @@ function replaceWords(text, triggers) {
   //can create bigger array of smaller text
   let words = Object.keys(triggers)
   for (let i = 0; i < words.length; i++) {
-    text = text.replaceAll(words[i], `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
+    // text = text.replaceAll(words[i], `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
+    text = replaceAll(text, words[i], `<a href='${triggers[words[i]]}'>${words[i]}</a>`)
   }
   return text
 }
