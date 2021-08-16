@@ -14,7 +14,6 @@ async function isChannelOwner(ctx: Context, check_id: number) {
 
 export async function addChatTrigger(ctx: Context) {
   //reply to message which has text, space and url
-  console.log(ctx.message)
   if (ctx.chat.type != 'private') {
     if ('text' in ctx.message) {
       if (isChannelOwner(ctx, ctx.from.id)) {
