@@ -1,5 +1,19 @@
 name: Turkish
 help: |
-  <b>Bot</b> nasıl Telegraf botları yapacağınızı görmenizi sağlıyor.
+  <b>Bot</b>, mesajlardaki metni kanallardaki köprülerle değiştirmenize olanak tanır.
+  Örneğin, bunu dönüştürmek istiyorsanız:
+  'Pink Floyd güzel'
+  bunda:
+  '<a href="https://ro.wikipedia.org/wiki/Pink_Floyd">Pink Floyd</a> güzel'
+  Bu adımları takip et:
+  1. Botu yönetici olarak kanalınıza ekleyin.
+  2. Botu yönetici olarak kanal sohbetinize ekleyin (komutlar için gereklidir).
+  3. Sohbete şunun gibi bir şey yazın:
+  /addtrig Pink Floyd https://ro.wikipedia.org/wiki/Pink_Floyd
+  4. Bitti
+  5. Kaldırmak için: /rmtrig Pink Floyd
+  <b>Gönder</b> /addtrig Kanal gönderileri için yeni bir tetikleyici eklemek için.
+  <b>Gönder</b> /rmtrig Kanal gönderileri için bir tetikleyiciyi kaldırmak için.
+  <b>Gönder</b> /alltrig Tüm kanal tetikleyicilerini görüntülemek için.
 language: Lütfen, dili seçin.
 language_selected: <b>Bot</b> Türkçe konuşuyor.

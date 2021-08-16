@@ -1,5 +1,19 @@
 name: English
 help: |
-  <b>Bot</b> allows you to see how Telegraf bots can be built.
+  <b>Bot</b> allows you to replace text in messages with hyperlinks in channels.
+  For example if you want to transform this: 
+  'Pink Floyd is nice'
+  in this:
+  '<a href="https://ro.wikipedia.org/wiki/Pink_Floyd">Pink Floyd</a> is nice'
+  Follow these steps:
+  1. Add the bot to your channel as an admin.
+  2. Add the bot to your channel chat as an admin(needed for commands).
+  3. In the chat type something like: 
+  /addtrig Pink Floyd https://ro.wikipedia.org/wiki/Pink_Floyd
+  4. Done
+  5. To remove it: /rmtrig Pink Floyd
+  <b>Send</b> /addtrig to add a new trigger for channel posts.
+  <b>Send</b> /rmtrig to remove a trigger for channel posts
+  <b>Send</b> /alltrig to view all channel triggers
 language: Please, select the language.
 language_selected: <b>Bot</b> now speaks English.

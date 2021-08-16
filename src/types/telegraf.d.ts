@@ -1,11 +1,10 @@
 import I18N from 'telegraf-i18n'
-import { Chat, User } from '@/models'
+import { Channel } from '@/models'
 import { DocumentType } from '@typegoose/typegoose'
 
 declare module 'telegraf' {
   export class Context {
-    dbuser: DocumentType<User>
-    dbchat: DocumentType<Chat>
+    dbchannel: DocumentType<Channel>
     i18n: I18N
   }
 }

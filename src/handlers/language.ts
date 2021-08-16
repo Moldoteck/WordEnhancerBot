@@ -5,27 +5,36 @@ import { safeLoad } from 'js-yaml'
 export const localeActions = localesFiles().map((file) => file.split('.')[0])
 
 export function sendLanguage(ctx: Context) {
-  return ctx.reply(ctx.i18n.t('language'), languageKeyboard())
+
+  if (ctx.dbchannel) {
+    return ctx.reply(ctx.i18n.t('language'), languageKeyboard())
+  } else {
+    ctx.reply("Can't find channel info", { reply_to_message_id: ctx.message.message_id })
+  }
 }
 
 export async function setLanguage(ctx: Context) {
-  let user = ctx.dbuser
-  // let user = ctx.dbchat
+  let channel = ctx.dbchannel
   if ('data' in ctx.callbackQuery) {
-    user.language = ctx.callbackQuery.data
-    user = await (user as any).save()
-    const message = ctx.callbackQuery.message
+    if (channel) {
+      channel.language = ctx.callbackQuery.data
+      channel = await (channel as any).save()
 
-    const anyI18N = ctx.i18n as any
-    anyI18N.locale(ctx.callbackQuery.data)
+      const message = ctx.callbackQuery.message
 
-    await ctx.telegram.editMessageText(
-      message.chat.id,
-      message.message_id,
-      undefined,
-      ctx.i18n.t('language_selected'),
-      { parse_mode: 'HTML' }
-    )
+      const anyI18N = ctx.i18n as any
+      anyI18N.locale(ctx.callbackQuery.data)
+
+      await ctx.telegram.editMessageText(
+        message.chat.id,
+        message.message_id,
+        undefined,
+        ctx.i18n.t('language_selected'),
+        { parse_mode: 'HTML' }
+      )
+    } else {
+      ctx.reply("Can't find channel info", { reply_to_message_id: ctx.message.message_id })
+    }
   }
 }
 

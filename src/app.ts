@@ -10,17 +10,27 @@ import { ignoreOldMessageUpdates } from '@/middlewares/ignoreOldMessageUpdates'
 import { sendHelp } from '@/handlers/sendHelp'
 import { i18n, attachI18N } from '@/helpers/i18n'
 import { setLanguage, sendLanguage } from '@/handlers/language'
-import { attachUser } from '@/middlewares/attachUser'
-import { attachChat } from '@/middlewares/attachChat'
+import { addChatTrigger, allCTrigger, rmChatTrigger } from './handlers/triggers'
+import { enhanceChannelMessage } from './handlers/message'
+import { attachChannel } from './middlewares/attachChannel'
+import { setCommands } from './handlers/commands'
 
 // Middlewares
 bot.use(ignoreOldMessageUpdates)
-bot.use(attachUser)
-bot.use(attachChat)
+bot.use(attachChannel)
 bot.use(i18n.middleware(), attachI18N)
+
 // Commands
 bot.command(['help', 'start'], sendHelp)
 bot.command('language', sendLanguage)
+
+bot.command('addtrig', addChatTrigger)
+bot.command('rmtrig', rmChatTrigger)
+bot.command('alltrig', allCTrigger)
+bot.command('cmd', setCommands)
+
+bot.on('channel_post', enhanceChannelMessage)
+
 // Actions
 bot.action(localeActions, setLanguage)
 // Errors

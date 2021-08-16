@@ -7,4 +7,5 @@ mongoose.connect(process.env.MONGO, {
 mongoose.set('useCreateIndex', true)
 
 export * from './Chat'
+export * from './Channel'
 export * from './User'

@@ -1,9 +1,9 @@
 {
-  "name": "telegraf-template",
+  "name": "wordenhancerbot",
   "version": "1.0.0",
-  "description": "Telegram bot template based on telegraf.js.org",
+  "description": "Telegram bot that allows you to replace text in messages with hyperlinks in channels",
   "main": "dist/app.js",
-  "repository": "https://github.com/Moldoteck/telegraf-template",
+  "repository": "https://github.com/Moldoteck/WordEnhancerBot",
   "author": "Moldoteck <moldotecko@gmail.com>",
   "license": "MIT",
   "private": false,

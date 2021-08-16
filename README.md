@@ -1,10 +1,21 @@
-# Telegram bot template based on telegraf.js.org
+# Telegram bot that allows you to replace text in messages with hyperlinks in channels.
 
-Please, enjoy this starter template for Telegram bots based on telegraf.js.org. It includes most common middlewares used by me, MongoDB integration, language picker and internationalization and shows basic encapsulation techniques used by me.
+For example if you want to transform this: 
+'Pink Floyd is nice'
+in this:
+'<a href="https://ro.wikipedia.org/wiki/Pink_Floyd">Pink Floyd</a> is nice'
+Follow these steps:
+1. Add the bot to your channel as an admin.
+2. Add the bot to your channel chat as an admin(needed for commands).
+3. In the chat type something like: 
+/addtrig Pink Floyd https://ro.wikipedia.org/wiki/Pink_Floyd
+4. Done
+5. To remove it: /rmtrig Pink Floyd
+
 
 # Installation and local launch
 
-1. Clone this repo: `git clone https://github.com/Moldoteck/telegraf-template`
+1. Clone this repo: `git clone https://github.com/Moldoteck/WordEnhancerBot`
 2. Launch the [mongo database](https://www.mongodb.com/) locally
 3. Create `.env` with the environment variables listed below
 4. Run `yarn install` in the root folder
@@ -23,4 +34,4 @@ Also, please, consider looking at `.env.sample`.
 
 MIT — use for any purpose. Would be great if you could leave a note about the original developers. Thanks!
 
-Inspired from: https://github.com/backmeupplz/telegraf-template
+Inspired from: https://github.com/Moldoteck/telegraf-template
