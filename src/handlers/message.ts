@@ -55,7 +55,11 @@ export async function enhanceChannelMessage(ctx: Context) {
     new_msg = new_msg + new_txt_to_replace//last chunk
     if (new_msg.length > 0 && changed) {
       if (ctx.dbchannel) {
-        ctx.telegram.editMessageText(ctx.dbchannel.id, ctx.update.channel_post.message_id, undefined, new_msg, { parse_mode: 'HTML' })
+        try {
+          ctx.telegram.editMessageText(ctx.dbchannel.id, ctx.update.channel_post.message_id, undefined, new_msg, { parse_mode: 'HTML' })
+        } catch (e) {
+          console.log('Error is: ' + e)
+        }
       }
     }
   }
