@@ -9,7 +9,7 @@ let commands: BotCommand[] = [
 ]
 
 export async function setCommands(ctx: Context) {
-  if (ctx.from.id == 180001222) {
+  if ('' + ctx.from.id == process.env.OWNER_ID) {
     ctx.telegram.setMyCommands(commands)
   }
 }

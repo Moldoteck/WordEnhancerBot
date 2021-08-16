@@ -26,7 +26,8 @@ And you should be good to go! Feel free to fork and submit pull requests. Thanks
 # Environment variables
 
 - `TOKEN` — Telegram bot token
-- `MONGO`— URL of the mongo database
+- `MONGO` — URL of the mongo database
+- `OWNER_ID` — id of the bot owner
 
 Also, please, consider looking at `.env.sample`.
 
