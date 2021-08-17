@@ -21,4 +21,7 @@ export async function countChan(ctx: Context) {
     //TODO: check remained channels
     ctx.reply('Total channels ' + channels)
   }
+  else {
+    console.log(ctx.from.id, process.env.OWNER_ID)
+  }
 }
