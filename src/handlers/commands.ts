@@ -15,7 +15,7 @@ export async function setCommands(ctx: Context) {
   }
 }
 
-export async function countChats(ctx: Context) {
+export async function countChan(ctx: Context) {
   if ('' + ctx.from.id == process.env.OWNER_ID) {
     let channels = await countChannels()
     //TODO: check remained channels
