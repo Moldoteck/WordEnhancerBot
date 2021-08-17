@@ -13,7 +13,7 @@ import { setLanguage, sendLanguage } from '@/handlers/language'
 import { addChatTrigger, allCTrigger, rmChatTrigger } from './handlers/triggers'
 import { enhanceChannelMessage } from './handlers/message'
 import { attachChannel } from './middlewares/attachChannel'
-import { setCommands } from './handlers/commands'
+import { countChats, setCommands } from './handlers/commands'
 
 // Middlewares
 bot.use(ignoreOldMessageUpdates)
@@ -28,6 +28,7 @@ bot.command('addtrig', addChatTrigger)
 bot.command('rmtrig', rmChatTrigger)
 bot.command('alltrig', allCTrigger)
 bot.command('cmd', setCommands)
+bot.command('countChats', countChats)
 
 bot.on('channel_post', enhanceChannelMessage)
 

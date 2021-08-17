@@ -29,3 +29,7 @@ export async function findChannel(id: number) {
   }
   return channel
 }
+
+export async function countChannels() {
+  return await ChannelModel.countDocuments({})
+}

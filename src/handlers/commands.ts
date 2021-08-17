@@ -1,3 +1,4 @@
+import { countChannels } from '@/models'
 import { Context } from 'telegraf'
 import { BotCommand } from 'telegraf/typings/core/types/typegram'
 
@@ -11,5 +12,13 @@ let commands: BotCommand[] = [
 export async function setCommands(ctx: Context) {
   if ('' + ctx.from.id == process.env.OWNER_ID) {
     ctx.telegram.setMyCommands(commands)
+  }
+}
+
+export async function countChats(ctx: Context) {
+  if ('' + ctx.from.id == process.env.OWNER_ID) {
+    let channels = await countChannels()
+    //TODO: check remained channels
+    ctx.reply('Total channels ' + channels)
   }
 }
