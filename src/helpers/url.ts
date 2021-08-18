@@ -1,4 +1,6 @@
-export function detectURL(message) {
+import { Message, Update } from 'telegraf/typings/core/types/typegram';
+
+export function detectURL(message: Update.New & Update.Channel & Message) {
     const entities = message.entities || message.caption_entities || []
     let detected_urls = []
     let url_place = []
@@ -8,7 +10,7 @@ export function detectURL(message) {
             if ('url' in entity) {
                 detected_urls.push(entity.url)
                 url_place.push([entity.offset, entity.length])
-                url_type.push(0)
+                url_type.push('link')
             } else {
                 if ('text' in message) {
                     let det_url = (message.text).substr(
@@ -17,7 +19,7 @@ export function detectURL(message) {
                     )
                     url_place.push([entity.offset, entity.length])
                     detected_urls.push(det_url)
-                    url_type.push(1)
+                    url_type.push('link')
                 } else if ('caption' in message) {
                     let det_url = (message.caption).substr(
                         entity.offset,
@@ -25,9 +27,14 @@ export function detectURL(message) {
                     )
                     url_place.push([entity.offset, entity.length])
                     detected_urls.push(det_url)
-                    url_type.push(1)
+                    url_type.push('link')
                 }
             }
+        } else if (['bold', 'italic', 'underline', 'strikethrough'].includes(entity.type)) {
+            //, 
+            detected_urls.push('')
+            url_place.push([entity.offset, entity.length])
+            url_type.push(entity.type)
         }
     }
     return [detected_urls, url_place, url_type]
