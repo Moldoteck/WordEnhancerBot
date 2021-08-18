@@ -1,6 +1,6 @@
 import { Message, Update } from 'telegraf/typings/core/types/typegram';
 
-export function detectURL(message: Update.New & Update.Channel & Message) {
+export function detectURL(message) {
     const entities = message.entities || message.caption_entities || []
     let detected_urls = []
     let url_place = []
